@@ -84,6 +84,21 @@ def carouseltest(event):
                                 data='action=carouseltest'
                             )
                         ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://images.pexels.com/photos/6686455/pexels-photo-6686455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                        title='carousel 按鈕測試',
+                        text='選擇一個分類吧',
+                        actions=[
+                            PostbackAction(
+                                label='分類一',
+                                data='action=carouseltest'
+                            ),
+                            PostbackAction(
+                                label='分類二',
+                                data='action=carouseltest'
+                            ),
+                        ]
                     )
                 ]
             )
