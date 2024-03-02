@@ -98,6 +98,10 @@ def carouseltest(event):
                                 label='分類二',
                                 data='action=carouseltest'
                             ),
+                            PostbackAction(
+                                label='分類三',
+                                data='action=carouseltest'
+                            )
                         ]
                     )
                 ]
