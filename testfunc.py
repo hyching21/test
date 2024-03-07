@@ -107,3 +107,7 @@ def carouseltest(event):
     except Exception as e:
         print(f"Error in quicktest: {e}")
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='失敗')) 
+
+def handle_query(event, podcast_id):
+    msg ="請輸入query:"
+    

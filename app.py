@@ -5,6 +5,7 @@ from linebot.models import*
 from settings import*
 from testfunc import*
 from urllib.parse import parse_qsl
+from collections import defaultdict
 app = Flask(__name__)
 
 
@@ -15,6 +16,7 @@ try:
 except:
     print("Error while connecting to LineBot")
     
+user_selected_items = defaultdict(str)
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -32,6 +34,17 @@ def callback():
     
     for event in events:
         if isinstance(event, MessageEvent):
+            user_id = event.source.user_id
+            query = event.message.text
+            if user_selected_items[user_id] and query!="@carousel":
+                item_id = user_selected_items[user_id]
+                
+                reply_message = f"Item ID: {item_id}\nQuery: {query}"
+                try:
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_message))
+                except Exception as e:
+                    print("Error in handle_message:", e)
+
             if event.message.text == "你好":
                 line_bot_api.reply_message(
                     event.reply_token,TextSendMessage(text="想查詢甚麼呢?")
@@ -52,9 +65,9 @@ def callback():
             backdata=dict(parse_qsl(event.postback.data))
             if backdata.get('action') and backdata['action'].startswith('test_'):
                 item_id = backdata['action'].split('_')[1]
+                user_selected_items[event.source.user_id] = item_id
                 try:
-                        
-                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=item_id))
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text="please input a query:"))
                 except Exception as e:
                     print("Error in handle_postback:", e)        
                         
