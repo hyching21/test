@@ -4,6 +4,7 @@ from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import*
 from settings import*
 from testfunc import*
+from urllib.parse import parse_qsl
 app = Flask(__name__)
 
 
@@ -45,6 +46,20 @@ def callback():
                 line_bot_api.reply_message(
                     event.reply_token,TextSendMessage(text=event.message.text)
                 )
+            
+            #POSTBACK ACTION
+            if isinstance(event, PostbackEvent):
+                backdata=dict(parse_qsl(event.postback.data))
+                if backdata.get('action') and backdata['action'].startswith('test_'):
+                    item_id = backdata['action'].split('_')[1]
+                    try:
+                        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=item_id))
+                    except Exception as e:
+                        print("Error in handle_postback:", e)
+                        
+
+
+
     return 'OK'
                 
 #訊息傳遞區塊

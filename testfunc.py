@@ -40,17 +40,13 @@ def buttontest(event):
                     title='Button 按鈕測試',
                     text='請選擇功能',
                     actions=[
-                        MessageTemplateAction(
+                        PostbackAction(
                             label='功能1',
                             text='text1'
                         ),
                         MessageTemplateAction(
                             label='功能2',
                             text='text2'
-                        ),
-                        MessageTemplateAction(
-                            label='功能3',
-                            text='text3'
                         )
                     ]
                 )
@@ -68,40 +64,40 @@ def carouseltest(event):
                 columns=[
                     CarouselColumn(
                         thumbnail_image_url='https://images.pexels.com/photos/6686455/pexels-photo-6686455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-                        title='carousel 按鈕測試',
-                        text='選擇一個分類吧',
+                        title='分類:投資',
+                        text='選擇你有興趣的 podcast',
                         actions=[
                             PostbackAction(
-                                label='分類一',
-                                data='action=carouseltest'
+                                label='股癌',
+                                data='action=test_1'
                             ),
                             PostbackAction(
-                                label='分類二',
-                                data='action=carouseltest'
+                                label='M觀點',
+                                data='action=test_2'
                             ),
                             PostbackAction(
-                                label='分類三',
-                                data='action=carouseltest'
+                                label='財報狗',
+                                data='action=test_3'
                             )
                         ]
                     ),
                     CarouselColumn(
                         thumbnail_image_url='https://images.pexels.com/photos/6686455/pexels-photo-6686455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-                        title='carousel 按鈕測試',
-                        text='選擇一個分類吧',
+                        title='分類:喜劇',
+                        text='選擇你有興趣的 podcast',
                         actions=[
                             PostbackAction(
-                                label='分類一',
-                                data='action=carouseltest'
+                                label='百靈果',
+                                data='action=test_4'
                             ),
                             PostbackAction(
-                                label='分類二',
-                                data='action=carouseltest'
+                                label='好味小姐',
+                                data='action=test_5'
                             ),
                             PostbackAction(
-                                label='分類三',
-                                data='action=carouseltest'
-                            )
+                                label='面白',
+                                data='action=test_6'
+                            ),
                         ]
                     )
                 ]
